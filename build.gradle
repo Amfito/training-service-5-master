@@ -1,0 +1,88 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'org.flywaydb.flyway' version '7.6.0'
+}
+
+group = 'com.accenture.ems'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.2.6.RELEASE'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2', version: '2.4.5'
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'junit:junit:4.12'
+	compileOnly 'org.projectlombok:lombok'
+	implementation 'org.jetbrains:annotations:20.1.0'
+	implementation 'org.mockito:mockito-core:+'
+	compile group: 'org.mockito', name: 'mockito-core', version: '+'
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.projectlombok:lombok'
+	implementation group: 'commons-collections', name: 'commons-collections', version: '3.2.2'
+	testImplementation 'org.mockito:mockito-core:2.1.0'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.mockito:mockito-junit-jupiter:2.23.0')
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.0-M1'
+	implementation group: 'uk.com.robust-it', name: 'cloning', version: '1.9.12'
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
+	compile group: 'org.hibernate', name: 'hibernate-validator', version: '6.0.13.Final'
+	testImplementation("org.assertj:assertj-core:3.19.0")
+	implementation group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1.1'
+	implementation 'org.flywaydb:flyway-core:7.6.0'
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
+	implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
+	implementation group: 'io.springfox', name: 'springfox-bean-validators', version: '3.0.0'
+
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
+	implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
+	implementation group: 'io.springfox', name: 'springfox-bean-validators', version: '3.0.0'
+
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: project.swaggerVersion
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: project.swaggerVersion
+	implementation group: 'io.springfox', name: 'springfox-boot-starter', version: project.swaggerVersion
+
+	implementation 'org.projectlombok:lombok:1.18.16'
+
+	annotationProcessor "org.mapstruct:mapstruct-processor:1.4.2.Final"
+	implementation "org.mapstruct:mapstruct:1.4.2.Final"
+
+	compile group: 'org.hibernate', name: 'hibernate-validator', version: '6.0.13.Final'
+
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: project.swaggerVersion
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: project.swaggerVersion
+	implementation group: 'io.springfox', name: 'springfox-boot-starter', version: project.swaggerVersion
+	implementation group: 'io.springfox', name: 'springfox-bean-validators', version: project.swaggerVersion
+
+
+	implementation "org.mapstruct:mapstruct:1.4.2.Final"
+	annotationProcessor "org.mapstruct:mapstruct-processor:1.4.2.Final"
+
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2', version: '2.4.5'
+}
+
+test {
+	useJUnitPlatform()
+}

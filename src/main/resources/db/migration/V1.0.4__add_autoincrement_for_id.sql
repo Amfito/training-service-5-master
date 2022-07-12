@@ -1,0 +1,2 @@
+ALTER TABLE employee_project_role_history
+MODIFY COLUMN idemployee_project_role_history_id bigint(20) NOT NULL AUTO_INCREMENT;
