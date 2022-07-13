@@ -2,8 +2,6 @@ package com.accenture.ems.emstraining.web.controller;
 
 import com.accenture.ems.emstraining.business.service.TrainingService;
 import com.accenture.ems.emstraining.models.Training;
-import com.accenture.ems.emstraining.models.TrainingDetails;
-import com.accenture.ems.emstraining.models.TrainingType;
 import com.accenture.ems.emstraining.swagger.DescriptionVariables;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -102,5 +101,29 @@ public class TrainingController {
         Training trainingSaved = trainingService.saveTraining(training);
         log.debug("New training is created: {}", training);
         return new ResponseEntity<>(trainingSaved, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "Deletes the Training  by id",
+            notes = "Deletes the Training if provided id exists",
+            response = Training.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 204, message = "The Training is successfully deleted"),
+            @ApiResponse(code = 401, message = "The request requires user authentication"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
+            @ApiResponse(code = 500, message = "Server error")})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> deleteTrainingById(@ApiParam(value = "The id of the Training ", required = true)
+                                                       @NonNull @PathVariable Long id) {
+        log.info("Delete Training by passing ID, where ID is:{}", id);
+        Optional<Training> training = trainingService.findTrainingById(id);
+        if (!(training.isPresent())) {
+            log.warn("Training for delete with id {} is not found.", id);
+            return ResponseEntity.notFound().build();
+        }
+        trainingService.deleteTrainingById(id);
+        log.debug("Training with id {} is deleted: {}", id, training);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

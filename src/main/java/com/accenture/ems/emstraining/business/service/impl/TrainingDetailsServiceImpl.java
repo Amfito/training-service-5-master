@@ -2,7 +2,6 @@ package com.accenture.ems.emstraining.business.service.impl;
 
 import com.accenture.ems.emstraining.business.mappers.TrainingDetailsMapStructMapper;
 import com.accenture.ems.emstraining.business.repository.TrainingDetailsRepository;
-import com.accenture.ems.emstraining.business.repository.model.TrainingDAO;
 import com.accenture.ems.emstraining.business.repository.model.TrainingDetailsDAO;
 import com.accenture.ems.emstraining.business.service.TrainingDetailsService;
 import com.accenture.ems.emstraining.models.TrainingDetails;
@@ -45,5 +44,11 @@ public class TrainingDetailsServiceImpl implements TrainingDetailsService {
         TrainingDetailsDAO trainingDetailsSaved = trainingDetailsRepository.save(trainingDetailsMapStructMapper.trainingDetailsToTrainingDetailsDAO(trainingDetails));
         log.info("New Training Details saved: {}", () -> trainingDetailsSaved);
         return trainingDetailsMapStructMapper.trainingDetailsDAOToTrainingDetails(trainingDetailsSaved);
+    }
+
+    @Override
+    public void deleteTrainingTypeById(Long id) {
+        trainingDetailsRepository.deleteById(id);
+        log.info("Training Details with id {} is deleted", id);
     }
 }

@@ -1,8 +1,6 @@
 package com.accenture.ems.emstraining.business.service;
 
-import com.accenture.ems.emstraining.models.Training;
 import com.accenture.ems.emstraining.models.TrainingDetails;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -13,4 +11,6 @@ public interface TrainingDetailsService {
     Optional<TrainingDetails> findTrainingDetailsById(Long id);
 
     TrainingDetails saveTrainingDetails(TrainingDetails trainingDetails) throws Exception;
+
+    void deleteTrainingTypeById(Long id);
 }
