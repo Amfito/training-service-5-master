@@ -4,7 +4,6 @@ import com.accenture.ems.emstraining.business.mappers.TrainingTypeMapStructMappe
 import com.accenture.ems.emstraining.business.repository.TrainingTypeRepository;
 import com.accenture.ems.emstraining.business.repository.model.TrainingTypeDAO;
 import com.accenture.ems.emstraining.models.TrainingType;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;

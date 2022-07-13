@@ -47,7 +47,7 @@ public class TrainingDetailsServiceImpl implements TrainingDetailsService {
     }
 
     @Override
-    public void deleteTrainingTypeById(Long id) {
+    public void deleteTrainingDetailsById(Long id) {
         trainingDetailsRepository.deleteById(id);
         log.info("Training Details with id {} is deleted", id);
     }

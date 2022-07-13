@@ -122,7 +122,7 @@ public class TrainingDetailsController {
             log.warn("Training details for delete with id {} is not found.", id);
             return ResponseEntity.notFound().build();
         }
-        trainingDetailsService.deleteTrainingTypeById(id);
+        trainingDetailsService.deleteTrainingDetailsById(id);
         log.debug("Training details with id {} is deleted: {}", id, trainingDetails);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

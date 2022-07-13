@@ -12,5 +12,5 @@ public interface TrainingDetailsService {
 
     TrainingDetails saveTrainingDetails(TrainingDetails trainingDetails) throws Exception;
 
-    void deleteTrainingTypeById(Long id);
+    void deleteTrainingDetailsById(Long id);
 }
