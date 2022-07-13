@@ -37,7 +37,7 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation group: 'commons-collections', name: 'commons-collections', version: '3.2.2'
-	testImplementation 'org.mockito:mockito-core:2.1.0'
+	testImplementation 'org.mockito:mockito-core:4.2.0'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
@@ -75,6 +75,10 @@ dependencies {
 	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: project.swaggerVersion
 	implementation group: 'io.springfox', name: 'springfox-boot-starter', version: project.swaggerVersion
 	implementation group: 'io.springfox', name: 'springfox-bean-validators', version: project.swaggerVersion
+
+// https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy
+	implementation 'net.bytebuddy:byte-buddy:1.12.4'
+
 
 
 	implementation "org.mapstruct:mapstruct:1.4.2.Final"
