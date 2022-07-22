@@ -2,10 +2,8 @@ package com.accenture.ems.emstraining.business.service.impl;
 
 import com.accenture.ems.emstraining.business.mappers.TrainingDetailsMapStructMapper;
 import com.accenture.ems.emstraining.business.repository.TrainingDetailsRepository;
-import com.accenture.ems.emstraining.business.repository.model.TrainingDAO;
 import com.accenture.ems.emstraining.business.repository.model.TrainingDetailsDAO;
 import com.accenture.ems.emstraining.business.service.TrainingDetailsService;
-import com.accenture.ems.emstraining.models.Training;
 import com.accenture.ems.emstraining.models.TrainingDetails;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
