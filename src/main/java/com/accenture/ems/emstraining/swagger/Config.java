@@ -24,7 +24,7 @@ public class Config {
                 .paths(PathSelectors.ant("/error").negate())
                 .build()
                 .apiInfo(apiInfo());
-        docket.useDefaultResponseMessages(false);
+        docket.useDefaultResponseMessages(true);
         return appendTags(docket);
     }
 

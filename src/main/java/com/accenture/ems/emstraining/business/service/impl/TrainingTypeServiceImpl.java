@@ -7,7 +7,9 @@ import com.accenture.ems.emstraining.business.service.TrainingTypeService;
 import com.accenture.ems.emstraining.models.TrainingType;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,14 +42,29 @@ public class TrainingTypeServiceImpl implements TrainingTypeService {
 
     @Override
     public TrainingType saveTrainingType(TrainingType trainingType) throws Exception {
-        TrainingTypeDAO trainingTypeSaved = trainingTypeRepository.save(trainingTypeMapStructMapper.trainingTypeToTrainingTypeDAO(trainingType));
-        log.info("New Training type saved: {}", () -> trainingTypeSaved);
-        return trainingTypeMapStructMapper.trainingTypeDAOToTrainingType(trainingTypeSaved);
+        if (!hasMatch(trainingType)) {
+            TrainingTypeDAO trainingTypeSaved = trainingTypeRepository.save(trainingTypeMapStructMapper.trainingTypeToTrainingTypeDAO(trainingType));
+            log.info("New Training type saved: {}", () -> trainingTypeSaved);
+            return trainingTypeMapStructMapper.trainingTypeDAOToTrainingType(trainingTypeSaved);
+        }else {
+            log.error("Training type conflict exception is thrown: {}", HttpStatus.CONFLICT);
+            throw new HttpClientErrorException(HttpStatus.CONFLICT);
+        }
+
     }
 
     @Override
     public void deleteTrainingTypeById(Long id) {
         trainingTypeRepository.deleteById(id);
         log.info("Training Type with id {} is deleted", id);
+    }
+
+    public boolean hasMatch(TrainingType trainingType){
+        return trainingTypeRepository.findAll().stream().anyMatch(trainingTypeDAO -> isSame(trainingType, trainingTypeDAO));
+    }
+
+    private boolean isSame(TrainingType trainingType, TrainingTypeDAO trainingTypeDAO) {
+        return trainingTypeDAO.getId().equals(trainingType.getId()) &&
+                trainingTypeDAO.getType().equals(trainingType.getType()) ;
     }
 }

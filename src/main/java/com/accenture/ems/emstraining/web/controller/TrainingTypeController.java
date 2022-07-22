@@ -28,6 +28,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Api(tags = {DescriptionVariables.TrainingTypes})
+//@ApiResponses(value = {
+//        @ApiResponse(code = 200, message = "The request has succeeded", response = TrainingType.class, responseContainer = "List"),
+//        @ApiResponse(code = 201, message = "The training type is successfully saved"),
+//        @ApiResponse(code = 401, message = "The request requires user authentication"),
+//        @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+//        @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
+//        @ApiResponse(code = 500, message = "Server error")})
 @Log4j2
 @RestController
 @RequestMapping("/api/v1/trainingType")
@@ -40,12 +47,6 @@ public class TrainingTypeController {
     @ApiOperation(value = "Finds all training type",
             notes = "Returns the entire list of training type",
             response = TrainingType.class, responseContainer = "List")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The request has succeeded", response = TrainingType.class, responseContainer = "List"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
     public ResponseEntity<List<TrainingType>> findAllTrainingType() {
         log.info("Retrieve list of training type");
         List<TrainingType> trainingTypeList = trainingTypeService.findAllTrainingType();
@@ -61,12 +62,6 @@ public class TrainingTypeController {
     @ApiOperation(value = "Find training type by id",
             notes = "Provide an id to search specific training type in database",
             response = TrainingType.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The request has succeeded"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
     public ResponseEntity<TrainingType> findTrainingTypeById(@ApiParam(value = "id of the training type", required = true)
                                                      @NonNull @PathVariable Long id) {
         log.info("Find training type by passing ID, where training ID is :{} ", id);
@@ -83,14 +78,6 @@ public class TrainingTypeController {
     @ApiOperation(value = "Saves the training type in database",
             notes = "If provided valid training type, saves it",
             response = TrainingType.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The training type is successfully saved"),
-            @ApiResponse(code = 400, message = "Missed required parameters, parameters are not valid"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")}
-    )
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<TrainingType> saveTrainingType(@Valid @RequestBody TrainingType trainingType, BindingResult bindingResult) throws Exception {
         log.info("Create new training type by passing : {}", trainingType);
@@ -107,12 +94,6 @@ public class TrainingTypeController {
     @ApiOperation(value = "Deletes the Training Type by id",
             notes = "Deletes the Training Type if provided id exists",
             response = TrainingType.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "The Training Type is successfully deleted"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> deleteTrainingTypeById(@ApiParam(value = "The id of the Training Type", required = true)
                                                    @NonNull @PathVariable Long id) {

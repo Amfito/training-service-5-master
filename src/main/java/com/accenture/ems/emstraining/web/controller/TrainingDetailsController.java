@@ -28,6 +28,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Api(tags = {DescriptionVariables.TRAINING_DETAILS})
+//@ApiResponses(value = {
+//        @ApiResponse(code = 200, message = "The request has succeeded", response = TrainingDetails.class, responseContainer = "List"),
+//        @ApiResponse(code = 201, message = "The training details is successfully saved"),
+//        @ApiResponse(code = 401, message = "The request requires user authentication"),
+//        @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+//        @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
+//        @ApiResponse(code = 500, message = "Server error")})
 @Log4j2
 @RestController
 @RequestMapping("/api/v1/trainingDetails")
@@ -40,12 +47,6 @@ public class TrainingDetailsController {
     @ApiOperation(value = "Finds all training details",
             notes = "Returns the entire list of training details ",
             response = TrainingDetails.class, responseContainer = "List")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The request has succeeded", response = TrainingDetails.class, responseContainer = "List"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
     public ResponseEntity<List<TrainingDetails>> findAllTrainingDetails() {
         log.info("Retrieve list of training details");
         List<TrainingDetails> trainingDetailsList = trainingDetailsService.findAllTrainingDetails();
@@ -61,12 +62,6 @@ public class TrainingDetailsController {
     @ApiOperation(value = "Find training details by id",
             notes = "Provide an id to search specific training details in database",
             response = TrainingDetails.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The request has succeeded"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
     public ResponseEntity<TrainingDetails> findTrainingDetailsById(@ApiParam(value = "id of the training details", required = true)
                                                  @NonNull @PathVariable Long id) {
         log.info("Find training details by passing ID, where training details ID is :{} ", id);
@@ -83,14 +78,6 @@ public class TrainingDetailsController {
     @ApiOperation(value = "Saves the training Details in database",
             notes = "If provided valid training Details, saves it",
             response = TrainingDetails.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The training Details is successfully saved"),
-            @ApiResponse(code = 400, message = "Missed required parameters, parameters are not valid"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")}
-    )
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<TrainingDetails> saveTrainingDetails(@Valid @RequestBody TrainingDetails trainingDetails, BindingResult bindingResult) throws Exception {
         log.info("Create new training Details by passing : {}", trainingDetails);
@@ -107,12 +94,6 @@ public class TrainingDetailsController {
     @ApiOperation(value = "Deletes the Training details by id",
             notes = "Deletes the Training details if provided id exists",
             response = TrainingDetails.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "The Training details is successfully deleted"),
-            @ApiResponse(code = 401, message = "The request requires user authentication"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The server has not found anything matching the Request-URI"),
-            @ApiResponse(code = 500, message = "Server error")})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> deleteTrainingDetailsById(@ApiParam(value = "The id of the Training details", required = true)
                                                        @NonNull @PathVariable Long id) {

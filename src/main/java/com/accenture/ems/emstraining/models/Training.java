@@ -2,7 +2,6 @@ package com.accenture.ems.emstraining.models;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,6 @@ import javax.validation.constraints.Pattern;
 @ApiModel(description=  "Model of Training data")
 @Component
 @EqualsAndHashCode
-@AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class Training {

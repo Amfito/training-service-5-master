@@ -1,6 +1,5 @@
 package com.accenture.ems.emstraining.business.repository.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +12,6 @@ import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "trainingType")
 public class TrainingTypeDAO {
