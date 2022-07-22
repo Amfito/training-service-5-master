@@ -1,6 +1,5 @@
 package com.accenture.ems.emstraining.business.mappers;
 
-
 import com.accenture.ems.emstraining.business.repository.model.TrainingTypeDAO;
 import com.accenture.ems.emstraining.models.TrainingType;
 import org.mapstruct.Mapper;
